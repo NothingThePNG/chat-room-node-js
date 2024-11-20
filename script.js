@@ -1,19 +1,18 @@
 const socket = io("http://localhost:3000");
 const message_con = document.getElementById("mesige-con");
 const input = document.getElementById("message");
-const user = document.getElementById("username");
 const user_count = document.getElementById("user_count");
 
-let uerID
+let username 
 
-if (localStorage.getItem("uerID")) {
-    uerID = localStorage.getItem("uerID");
+if (localStorage.getItem("username")) {
+    username = localStorage.getItem("username");
 } else {
-    uerID = Math.random().toString(36).substring(2);
-    localStorage.setItem("uerID", uerID);
-    console.log(localStorage.getItem("uerID"));
+    username = Math.random().toString(36).substring(2);
+    localStorage.setItem("username", username);
+    console.log(localStorage.getItem("username"));
 }
-console.log(uerID);
+
 socket.on("connection", data => {
     console.log("hello " + data);
 });
@@ -41,8 +40,8 @@ socket.on("users-count", data => {
 
 input.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
-        let text = user.value + ": " + input.value;
-        socket.emit("chat-message", text);
+        let text = input.value;
+        socket.emit("chat-message", [username, text]);
         input.value = "";
     } 
     // if (e.key === "Escape") {

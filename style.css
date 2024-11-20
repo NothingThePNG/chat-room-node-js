@@ -27,30 +27,11 @@ div.container {
     border-radius: 40px;
 }
 
-#username {
-    width: 10%;
-    background: #070a20;
-
-    display: inline-block;
-    margin-top: 4vh;
-    margin-left: auto;
-    margin-right: auto;
-
-    color: #fff6b8;
-    border: #8d8a94 solid 3px;
-    border-radius: 1vw;
-    padding: 1em 2em;
-
-    font-size: 3vh;
-
-    transition: all 0.1s ease;
-}
-
 #message {
     width: 50%;
     background: #070a20;
 
-    display: inline-block;
+    display: block;
     margin-top: 4vh;
     margin-left: auto;
     margin-right: auto;
@@ -74,4 +55,17 @@ div.container {
     outline: none;
     background: #070a20;
     border: #8d8a94 solid 2px;
+}
+
+#username {
+    font-weight: bold;
+    color: #fff6b8;
+    margin-top: auto;
+    background-color: #4b0301;
+    text-align: center;
+    border-radius: 3vh;
+}
+
+#username:focus {
+    outline: none;
 }
