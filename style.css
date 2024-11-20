@@ -1,0 +1,77 @@
+body {
+    background: #080b24;
+    color: #FFF4B7;
+}
+
+div.container {
+    font-size: 4vh;
+    margin-bottom: 1vh;
+    background-color: #11184b;
+    border-radius: 5px;
+    padding: 1vh;
+    height: 20%;
+}
+
+.id {
+    font-weight: bold;
+    color: #fff6b8;
+    background-color: #4b0301;
+    margin: 1vh;
+    text-align: center;
+    border-radius: 3vh;
+}
+
+#mesige-con {
+    height: 80vh;
+    overflow: scroll;
+    border-radius: 40px;
+}
+
+#username {
+    width: 10%;
+    background: #070a20;
+
+    display: inline-block;
+    margin-top: 4vh;
+    margin-left: auto;
+    margin-right: auto;
+
+    color: #fff6b8;
+    border: #8d8a94 solid 3px;
+    border-radius: 1vw;
+    padding: 1em 2em;
+
+    font-size: 3vh;
+
+    transition: all 0.1s ease;
+}
+
+#message {
+    width: 50%;
+    background: #070a20;
+
+    display: inline-block;
+    margin-top: 4vh;
+    margin-left: auto;
+    margin-right: auto;
+
+    color: #fff6b8;
+    border: #8d8a94 solid 3px;
+    border-radius: 1vw;
+    padding: 1em 2em;
+
+    font-size: 3vh;
+
+    transition: all 0.1s ease;
+}
+
+#message:hover {
+    background: #070a20;
+    border: #8d8a94 solid 2px;
+}
+
+#message:focus {
+    outline: none;
+    background: #070a20;
+    border: #8d8a94 solid 2px;
+}
