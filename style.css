@@ -14,16 +14,23 @@ div.container {
 
 .id {
     font-weight: bold;
-    color: #fff6b8;
-    background-color: #4b0301;
+    color: #5bcef1;
+    text-shadow: #4b0301 1px 1px 1px 1px;
     margin: 1vh;
     text-align: center;
     border-radius: 3vh;
 }
 
+.sever {
+    background: #000 !important;
+    color: #fff !important;
+    border: #5bcef1 solid 2px;
+}
+
+
 #mesige-con {
     height: 80vh;
-    overflow: scroll;
+    overflow: auto;
     border-radius: 40px;
 }
 
@@ -60,12 +67,55 @@ div.container {
 #username {
     font-weight: bold;
     color: #fff6b8;
-    margin-top: auto;
+    margin-top: 48vh;
+    height: 10vh;
+    width: 100%;
+    font-size: 7vh;
     background-color: #4b0301;
     text-align: center;
+    align-self: center;
     border-radius: 3vh;
+    border: none;
 }
 
 #username:focus {
     outline: none;
+}
+
+#user-list-container {
+    position: absolute;
+    left: -100vh;
+    height: 80vh;
+    min-width: 20%;
+    max-width: 50%;
+
+    z-index: 100;
+
+    background: #010420;
+
+    text-align: center;
+
+    margin: 1em;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    transition: all 0.1s ease;
+}
+
+#user-list-container.show {
+    left: 0vh;
+}
+
+#user-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#user-list p {
+    background-color: #4b0301;
+    margin: 2px;
+    padding: 5px;
+    width: 90%;
 }

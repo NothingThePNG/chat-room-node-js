@@ -3,7 +3,17 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
-let users = 0;
+class Server_send {
+    constructor() {
+        this.username = "Server"
+        this.colour = "black"
+    }
+}
+
+const sever = new Server_send();
+
+let users_count = 0;
+let userdict = {};
 
 // Enable CORS for all routes
 app.use(cors());
@@ -28,25 +38,56 @@ const io = new Server(server, {
 
 
 io.on('connection', (socket) => {
-    console.log('A user connected');
-    io.emit('chat-message-send', ['Sever','A user has entered the chat']);
+
+    socket.on('user-class', (user) => {
+        console.log(userdict);
+        userdict[socket.id] = user;
+        io.emit('chat-message-send', [sever, `${user.username} has entered the chat`]);
+        console.log(`${user.username} connected`);
+
+        console.log(userdict);
+
+        let uerList = [];
+
+        for (key in userdict) {
+            uerList.push(userdict[key]);
+        }
+
+        io.emit('user-list', JSON.stringify(uerList));
+    })
     
     socket.on('chat-message', (msg) => {
         console.log(`Received message: ${msg}`);
-        io.emit('chat-message-send', [socket.id, msg]);
+        io.emit('chat-message-send', msg);
     });
     
     socket.on('disconnect', () => {
-        console.log('A user disconnected');
+        let leving = userdict[socket.id];
+        console.log(`${userdict[socket.id]} disconnected`);
+
+
+        delete userdict[socket.id]
+
+        console.log(userdict);
+
+        let uerList = [];
+
+        for (key in userdict) {
+            uerList.push(userdict[key]);
+        }
+
+        io.emit('user-list', JSON.stringify(uerList));
 
         // Broadcast a message to all connected clients
-        io.emit('chat-message-send', ['Server', 'A user has left the chat']);
-        users -= 1;
-        console.log(`Users connected: ${users}`);
-        io.emit('users-count', users);
+        io.emit('chat-message-send', [sever, `${leving.username} has left the chat`]);
+        users_count -= 1;
+        console.log(`Users connected: ${users_count}`);
+        io.emit('users-count', users_count);
     });
 
-    users += 1;
-    io.emit('users-count', users);
-    console.log(`Users connected: ${users}`);
+    users_count += 1;
+    io.emit('users-count', users_count);
+    console.log(`Users connected: ${users_count}`);
+
+    io.emit('server-all-good', "200");
 })
