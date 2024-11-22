@@ -53,7 +53,11 @@ io.on('connection', (socket) => {
             uerList.push(userdict[key]);
         }
 
-        io.emit('user-list', JSON.stringify(uerList));
+        users_count += 1;
+
+        io.emit('user-info', [JSON.stringify(uerList),  users_count]);
+
+        console.log(`Users connected: ${users_count}`);
     })
     
     socket.on('chat-message', (msg) => {
@@ -76,18 +80,16 @@ io.on('connection', (socket) => {
             uerList.push(userdict[key]);
         }
 
-        io.emit('user-list', JSON.stringify(uerList));
+        users_count -= 1;
+
+
+        io.emit('user-info', [JSON.stringify(uerList),  users_count]);
+
+        console.log(`Users connected: ${users_count}`);
 
         // Broadcast a message to all connected clients
         io.emit('chat-message-send', [sever, `${leving.username} has left the chat`]);
-        users_count -= 1;
-        console.log(`Users connected: ${users_count}`);
-        io.emit('users-count', users_count);
     });
-
-    users_count += 1;
-    io.emit('users-count', users_count);
-    console.log(`Users connected: ${users_count}`);
 
     io.emit('server-all-good', "200");
 })

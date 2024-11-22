@@ -19,6 +19,7 @@ div.container {
     margin: 1vh;
     text-align: center;
     border-radius: 3vh;
+    -webkit-text-stroke: 0.05vw #000;
 }
 
 .sever {
@@ -80,6 +81,21 @@ div.container {
 
 #username:focus {
     outline: none;
+}
+
+#colour {
+    width: 50%;
+
+    padding: 0;
+    margin-top: 20px;
+    margin-left: 25%;
+
+    border: #2b2727 4px solid;
+
+    background-color: transparent;
+
+
+    border-radius: 0;
 }
 
 #user-list-container {
