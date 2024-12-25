@@ -82,7 +82,6 @@ io.on('connection', (socket) => {
 
         users_count -= 1;
 
-
         io.emit('user-info', [JSON.stringify(uerList),  users_count]);
 
         console.log(`Users connected: ${users_count}`);
